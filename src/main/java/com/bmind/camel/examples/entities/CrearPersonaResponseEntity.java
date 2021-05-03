@@ -3,7 +3,7 @@ package com.bmind.camel.examples.entities;
 import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
 import org.apache.camel.dataformat.bindy.annotation.DataField;
 
-@CsvRecord(separator =",",skipField = false, skipFirstLine = false )
+@CsvRecord(separator =",",skipField = true, skipFirstLine = true )
 public class CrearPersonaResponseEntity {
 	
 	@DataField(pos=1)

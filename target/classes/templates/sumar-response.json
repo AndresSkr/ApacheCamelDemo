@@ -1,0 +1,3 @@
+{
+ "sumaResponse" : "$headers.result"
+}

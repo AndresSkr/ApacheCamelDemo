@@ -11,7 +11,7 @@ import com.bmind.camel.examples.dto.CrearEmpleadoResponseDto;
 import com.bmind.camel.examples.dto.PersonDTO;
 import com.bmind.camel.examples.entities.CrearEmpleadoEntity;
 
-//@Component
+@Component
 public class EmpleadosMasivosRoute extends RouteBuilder {
 	
 	@Value("${empleado.camel.rs.url.crear}")
@@ -20,22 +20,22 @@ public class EmpleadosMasivosRoute extends RouteBuilder {
 	public void configure() throws Exception {
 		
 		from("file:C:/Users/jhohan.hoyos.meneses/OneDrive - Accenture/Desktop?delay=300000&initialDelay=1000&fileName=empleados.csv&noop=true")
-		.log("Procesando Archivo: ${file:name}")
+		//.log("Procesando Archivo: ${file:name}")
 		.unmarshal().bindy(BindyType.Csv, CrearEmpleadoEntity.class)
-		.log("Body: ${body}")
+		//.log("Body: ${body}")
 		.split()
 		.body()
-		.log("CArgo : ${body.cargo}")
-		.log("${body.idPersona}")
-		.log("Area: ${body.area}")
+		//.log("CArgo : ${body.cargo}")
+		//.log("${body.idPersona}")
+		//.log("Area: ${body.area}")
 		.to("direct:crearEmpleadoCamel")
 		.end();
 		
 		
 		from("direct:crearEmpleadoCamel")
-		.log("Body:${body}")
+		//.log("Body:${body}")
 		.marshal().json(JsonLibrary.Jackson)
-		.log("Body:${body}")
+		//.log("Body:${body}")
 		.toD(urlCrearEmpleado + "?bridgeEndpoint=true&httpMethod=POST")
 		.end();
 	}

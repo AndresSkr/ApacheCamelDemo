@@ -67,6 +67,12 @@
 			<artifactId>camel-bindy-starter</artifactId>
 			<version>3.9.0</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-velocity-starter</artifactId>
+			<version>3.9.0</version>
+		</dependency>
 
 	</dependencies>
 
