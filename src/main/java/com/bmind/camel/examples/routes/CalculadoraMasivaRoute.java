@@ -61,23 +61,23 @@ public class CalculadoraMasivaRoute extends RouteBuilder{
 		//.log("LA SUMA DE  ${exchangeProperty.num1} + ${exchangeProperty.num2} = ${body.response}")
 		.unmarshal(new JacksonDataFormat(ResponseDto.class))
 		.setHeader("ResultadoSuma",simple("${exchangeProperty.num1} + ${exchangeProperty.num2} = ${body.response}"))
-		.log("Suma : ${headers.ResultadoSuma}")
+		//.log("Suma : ${headers.ResultadoSuma}")
 		
 		
 		.toD(urlCalculadoraSubtract + "/${exchangeProperty.num1}/${exchangeProperty.num2}?bridgeEndpoint=true&httpMethod=GET")
 		.unmarshal(new JacksonDataFormat(ResponseDto.class))
 		.setHeader("ResultadoSubtract",simple("${exchangeProperty.num1} - ${exchangeProperty.num2} = ${body.response}"))
-		.log("Subtract : ${headers.ResultadoSubtract}")
+		//.log("Subtract : ${headers.ResultadoSubtract}")
 		
 		.toD(urlCalculadoraDivide + "/${exchangeProperty.num1}/${exchangeProperty.num2}?bridgeEndpoint=true&httpMethod=GET")
 		.unmarshal(new JacksonDataFormat(ResponseDto.class))
 		.setHeader("ResultadoDivide",simple("${exchangeProperty.num1} / ${exchangeProperty.num2} = ${body.response}"))
-		.log("Divide : ${headers.ResultadoDivide}")
+		//.log("Divide : ${headers.ResultadoDivide}")
 		
 		.toD(urlCalculadoraMultiply + "/${exchangeProperty.num1}/${exchangeProperty.num2}?bridgeEndpoint=true&httpMethod=GET")
 		.unmarshal(new JacksonDataFormat(ResponseDto.class))
 		.setHeader("ResultadoMultiply",simple("${exchangeProperty.num1} * ${exchangeProperty.num2} = ${body.response}"))
-		.log("Multiply : ${headers.ResultadoMultiply}")
+		//.log("Multiply : ${headers.ResultadoMultiply}")
 		.process(new Processor() {
 			
 			@Override
@@ -92,12 +92,8 @@ public class CalculadoraMasivaRoute extends RouteBuilder{
 		})
 		.marshal()
 		.bindy(BindyType.Csv,CalculadoraResponseEntity.class)
-		.to("file:C:/Users/jhohan.hoyos.meneses/OneDrive - Accenture/Desktop?fileName=${file:name}.proc&tempPrefix=filesInProgress")
+		.to("file:C:/Users/jhohan.hoyos.meneses/OneDrive - Accenture/Desktop?fileName=${file:name}.proc&fileExist=Append")
 		.end();
-		
-		
-		
-		
 	}
 
 }

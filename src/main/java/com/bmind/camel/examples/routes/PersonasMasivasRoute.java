@@ -79,13 +79,11 @@ public class PersonasMasivasRoute extends RouteBuilder{
 		.process(personaFileProcessor)
 		.marshal()
 		.bindy(BindyType.Csv,CrearPersonaResponseEntity.class)
+		.to("file:C:/Users/jhohan.hoyos.meneses/OneDrive - Accenture/Desktop?fileName=${file:name}.proc&fileExist=Append")
 		//.log("body45 : ${body}")
 		//.otherwise()
 		//.process(faultProcessor)
-		//.to("file:C:/Users/jhohan.hoyos.meneses/OneDrive - Accenture/Desktop?fileName=${file:name}.proc&tempPrefix=filesInProgress")
 		.end();
-		
-		
 		
 	}
 

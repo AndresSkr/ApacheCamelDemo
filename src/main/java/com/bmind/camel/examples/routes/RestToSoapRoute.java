@@ -52,22 +52,15 @@ public class RestToSoapRoute extends RouteBuilder {
 		
 		from("direct:calculadora-sumar-route")
 		.routeId("calculadora-sumar-route")
-		//.tracing()
 		.to("velocity://file:src/main/resources/templates/sumar-request.xml?contentCache=true")
 		.removeHeader("*")
 		.setHeader(Exchange.CONTENT_TYPE, constant("text/xml;charset=UTF-8"))
 		.setHeader(Exchange.HTTP_METHOD, simple("POST"))
 		.toD("http://www.dneonline.com/calculator.asmx?bridgeEndpoint=true&connectTimeout=3000&socketTimeout=60000")
 		.convertBodyTo(String.class)
-		//.log("Body de respuesta: ${body}")
 		.removeHeader("*")
 		.setHeader("result", xpath("//*[local-name()='AddResult']//text()",String.class))
 		.setProperty("result", xpath("//*[local-name()='AddResult']//text()",String.class))
-		/*.to("velocity://file:src/main/resources/templates/sumar-response.json?contentCache=true")
-		.convertBodyTo(String.class)
-		.removeHeader("result")
-		.transform()
-		.body()*/
 		.process(new Processor() {
 			
 			@Override

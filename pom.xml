@@ -73,6 +73,34 @@
 			<artifactId>camel-velocity-starter</artifactId>
 			<version>3.9.0</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-activemq-starter</artifactId>
+            <version>3.9.0</version>
+        </dependency>
+        
+        <dependency>
+          <groupId>org.apache.camel.springboot</groupId>
+          <artifactId>camel-jacksonxml-starter</artifactId>
+          <version>3.9.0</version>
+        </dependency>
+        
+        <dependency>
+          <groupId>org.apache.camel.springboot</groupId>
+          <artifactId>camel-sql-starter</artifactId>
+          <version>3.9.0</version>
+        </dependency>
+        
+        <dependency>
+	      <groupId>com.h2database</groupId>
+	      <artifactId>h2</artifactId>
+	    </dependency>
+	    
+	     <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-data-jpa</artifactId>
+	    </dependency>
 
 	</dependencies>
 
